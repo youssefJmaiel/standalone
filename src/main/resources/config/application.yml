@@ -52,6 +52,5 @@ swagger:
     description: '@pom.description@ Documentation'
     version: '@pom.version@'
     license: license
-    licenseUrl: http://easyms.fr/LICENSE-0.0.1.html
 
 management.endpoints.web.exposure.include: "*"
