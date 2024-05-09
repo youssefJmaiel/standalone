@@ -1,0 +1,4 @@
+id;date;description;pet_id;vet_id
+1;2021-01-01;visite 1;1;1
+2;2021-01-10;visite 2;1;2
+3;2022-01-01;visite 1;2;2

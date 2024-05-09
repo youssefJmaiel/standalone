@@ -1,0 +1,57 @@
+server:
+  port: 8099
+
+#Admin configuration
+#info:
+#  name: @app.id@
+#  description: @app.id@
+#  version: @pom.version@
+#  stage: local
+
+#spring:
+#  application:
+#    id: @app.id@
+#    name: @app.id@
+spring:
+  application:
+    name: standalone
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/standalone-tn
+    username: youssef
+    password: youssef
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+  h2.console:
+    enabled: true
+    path: /h2-console
+  liquibase:
+    change-log: classpath:config/db/master.xml
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: TRACE
+        type.descriptor.sql.BasicBinder: TRACE
+
+swagger:
+  paths: /api.*
+  api.info:
+    title: '@app.id@'
+    description: '@pom.description@ Documentation'
+    version: '@pom.version@'
+    license: license
+    licenseUrl: http://easyms.fr/LICENSE-0.0.1.html
+
+management.endpoints.web.exposure.include: "*"

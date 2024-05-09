@@ -1,0 +1,5 @@
+id;name;type_id;owner_id;birth_date
+1;Tom;1;1;2020-01-01
+2;Jerry;2;1;2020-01-01
+3;Spike;4;1;2020-01-01
+4;Tweety;3;2;2020-01-01

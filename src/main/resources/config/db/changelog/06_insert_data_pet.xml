@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+
+    <changeSet id="00000000000001" author="youssef">
+        <loadData
+                file="config/db/data/pet.csv"
+                separator=";"
+                tableName="pet">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="type_id" type="numeric"/>
+            <column name="owner_id" type="numeric"/>
+            <column name="birth_date" type="date"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

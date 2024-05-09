@@ -1,0 +1,2 @@
+CREATE SCHEMA IF NOT EXISTS standalone AUTHORIZATION admin;
+SET SCHEMA standalone;

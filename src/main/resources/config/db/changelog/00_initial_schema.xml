@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="autoIncrement" value="true"/>
+
+
+    <changeSet id="00000000000001" author="youssef">
+        <createTable tableName="owner">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telephone" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="pet_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="pet">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owner_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="date">
+            </column>
+        </createTable>
+        <createTable tableName="specialty">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="description" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="vet">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="visit">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pet_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vet_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="vet_specialty">
+            <column name="vet_id" type="int"></column>
+            <column name="specialty_id" type="int"></column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="pet" baseColumnNames="type_id"
+                                 constraintName="fk_pet_pet_type" referencedTableName="pet_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="pet" baseColumnNames="owner_id"
+                                 constraintName="fk_pet_owner" referencedTableName="owner"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="visit" baseColumnNames="pet_id"
+                                 constraintName="fk_visit_pet" referencedTableName="pet"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="visit" baseColumnNames="vet_id"
+                                 constraintName="fk_visit_vet" referencedTableName="vet"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="vet_specialty" baseColumnNames="vet_id"
+                                 constraintName="fk_vet_specialty_vet" referencedTableName="vet"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="vet_specialty" baseColumnNames="specialty_id"
+                                 constraintName="fk_vet_specialty_specialty" referencedTableName="specialty"
+                                 referencedColumnNames="id"/>
+
+
+        <createSequence
+                incrementBy="1"
+                cycle="true"
+                sequenceName="HIBERNATE_SEQUENCE"
+                startValue="1"
+        />
+    </changeSet>
+
+</databaseChangeLog>
